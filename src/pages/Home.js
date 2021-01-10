@@ -1,0 +1,22 @@
+import React from "react";
+import Products from "../components/Products";
+import Filter from "../components/Filter";
+import Cart from "../components/Cart";
+
+const Home = () => {
+  return (
+    <main>
+      <div className="content">
+        <div className="main">
+          <Filter></Filter>
+          <Products />
+        </div>
+        <div className="sidebar">
+          <Cart />
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default Home;

@@ -149,7 +149,7 @@ class Cart extends Component {
                 </div>
                 {this.state.showCheckout && (
                   <div className="cart">
-                    <form onSubmit={this.createOrder}>
+                    <form onSubmit={this.createOrder} id="cart-form">
                       <ul className="form-container">
                         <li>
                           <label>email</label>

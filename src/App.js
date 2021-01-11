@@ -3,6 +3,7 @@ import store from "./store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
 import UserProfile from "./pages/UserProfile";
 import NotFound from "./pages/NotFound";
 
@@ -13,15 +14,18 @@ class App extends React.Component {
         <div className="grid-container">
           <header>
             <a href="/">React Shopping Cart</a>
-            <a href="/profile">login</a>
+            <a href="/signin">Sign-in</a>
           </header>
-          <Router>
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/profile" component={UserProfile} />
-              <Route component={NotFound} />
-            </Switch>
-          </Router>
+          <main>
+            <Router>
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/signin" component={SignIn} />
+                <Route path="/profile" component={UserProfile} />
+                <Route component={NotFound} />
+              </Switch>
+            </Router>
+          </main>
           <footer>All right is resevered.</footer>
         </div>
       </Provider>

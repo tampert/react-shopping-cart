@@ -5,10 +5,10 @@ const User = mongoose.model(
   "users",
   new mongoose.Schema({
     _id: { type: String, default: shortid.generate },
-    name: String,
-    email: String,
-    password: String,
-    isAdmin: Boolean,
+    name: { type: String, required: true },
+    email: { type: String, required: true, index: true, unique: true },
+    password: { type: String, required: true },
+    isAdmin: { type: Boolean, default: false, required: true },
   })
 );
 

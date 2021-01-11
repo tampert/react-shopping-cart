@@ -47,4 +47,21 @@ router.route("/signin").post(
   })
 );
 
+router.route("/createadmin").get(
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const user = new User({
+        name: "admin",
+        email: "admin@example.com",
+        password: "ecommerce",
+        isAdmin: true,
+      });
+      const createAdminUser = await user.save();
+      res.send(createAdminUser);
+    } catch (err) {
+      res.status(500).send({ message: err.message });
+    }
+  })
+);
+
 module.exports = router;

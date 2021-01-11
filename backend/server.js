@@ -1,14 +1,25 @@
 const express = require("express");
+// const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const shortid = require("shortid");
-
 const dotenv = require("dotenv");
-
 dotenv.config();
+// models
+const Product = require("./models/Product.model");
+const Order = require("./models/Order.model");
+// routes
+const Users = require("./routes/Users.route");
 
 const app = express();
+const port = process.env.PORT || 5000;
+
+// app.use(cors());
 app.use(bodyParser.json());
+app.use("/api/users", Users);
+app.use((err, req, res, next) => {
+  const status = err.name && err.name === "ValidationError" ? 400 : 500;
+  res.status(status).send({ message: err.message });
+});
 
 mongoose
   .connect(process.env.MONGODB_URL, {
@@ -22,18 +33,6 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-
-const Product = mongoose.model(
-  "products",
-  new mongoose.Schema({
-    _id: { type: String, default: shortid.generate },
-    title: String,
-    description: String,
-    image: String,
-    price: Number,
-    availableSizes: [String],
-  })
-);
 
 app.get("/api/products", async (req, res) => {
   // Check if there are any products. Find is a promise
@@ -51,33 +50,6 @@ app.delete("/api/products/:id", async (req, res) => {
   const deletedProduct = await Product.findByIdAndDelete(req.params.id);
   res.send(deletedProduct);
 });
-
-const Order = mongoose.model(
-  "order",
-  new mongoose.Schema(
-    {
-      _id: {
-        type: String,
-        default: shortid.generate,
-      },
-      email: String,
-      name: String,
-      adress: String,
-      total: Number,
-      cartItems: [
-        {
-          _id: String,
-          title: String,
-          price: Number,
-          count: Number,
-        },
-      ],
-    },
-    {
-      timestamps: true,
-    }
-  )
-);
 
 app.post("/api/orders", async (req, res) => {
   if (
@@ -99,7 +71,6 @@ app.get("/api/orders", async (req, res) => {
   res.send(orders);
 });
 
-const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log("server at http://localhost:5000");
 });

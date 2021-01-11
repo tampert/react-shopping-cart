@@ -33,7 +33,6 @@ router.route("/signin").post(
       email: req.body.email,
       password: req.body.password,
     });
-    console.log(signinUser);
     if (!signinUser) {
       res.status(401).send({ message: "Invalid Email or Password" });
     } else {

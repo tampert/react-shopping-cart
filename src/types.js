@@ -8,3 +8,6 @@ export const CLEAR_ORDER = "CLEAR_ORDER";
 export const CLEAR_CART = "CLEAR_CART";
 
 export const SIGNIN = "SIGNIN";
+
+export const IS_LOADING = "IS_LOADING";
+export const LOADED = "LOADED";

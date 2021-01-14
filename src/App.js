@@ -2,6 +2,7 @@ import React from "react";
 import store from "./store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Overlay from "./components/Overlay";
 import Home from "./pages/Home";
 import SignInPage from "./pages/SignInPage";
 import UserProfile from "./pages/UserProfile";
@@ -11,6 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
+        <Overlay />
         <div className="grid-container">
           <header>
             <a href="/">React Shopping Cart</a>

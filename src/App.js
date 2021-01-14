@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Overlay from "./components/Overlay";
 import Home from "./pages/Home";
 import SignInPage from "./pages/SignInPage";
+import Register from "./pages/Register";
 import UserProfile from "./pages/UserProfile";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +24,7 @@ class App extends React.Component {
               <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/signin" component={SignInPage} />
+                <Route path="/register" component={Register} />
                 <Route path="/profile" component={UserProfile} />
                 <Route component={NotFound} />
               </Switch>

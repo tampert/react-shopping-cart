@@ -16,7 +16,11 @@ router
     expressAsyncHandler(async (req, res) => {
       const newUser = new User(req.body);
       const savedUser = await newUser.save();
-      res.send(savedUser);
+      if (!savedUser) {
+        res.status(401).send({ message: "Invalid Name, Email or Password" });
+      } else {
+        res.send(savedUser);
+      }
     })
   );
 

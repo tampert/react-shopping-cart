@@ -286,16 +286,18 @@ button:hover {
   color: green;
 }
 
-/* Form signin */
+/* Form signin & register */
 
-.signin-form-container {
+.signin-form-container,
+.register-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
-.signin-form-items {
+.signin-form-items,
+.register-form-items {
   display: flex;
   flex-direction: column;
   width: 32rem;
@@ -305,12 +307,14 @@ button:hover {
   list-style-type: none;
 }
 
-.signin-form-container li {
+.signin-form-container li,
+.register-form-container li {
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
 
-.signin-form-container h1 {
+.signin-form-container h1,
+.register-form-container h1 {
   font-size: 2.5rem;
 }

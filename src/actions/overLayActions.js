@@ -1,8 +1,8 @@
 import { IS_LOADING, LOADED } from "../types";
 
-export const loading = () => (dispatch) => {
+export const onLoading = () => (dispatch) => {
   dispatch({ type: IS_LOADING });
 };
-export const loaded = () => (dispatch) => {
+export const isLoaded = () => (dispatch) => {
   dispatch({ type: LOADED });
 };

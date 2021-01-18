@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../actions/productActions";
 import { addToCart } from "../actions/cartActions";
 
+import { onLoading, isLoaded } from "../actions/overLayActions";
+
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +32,13 @@ class Products extends Component {
     const { product } = this.state;
     return (
       <div>
+        <button
+          onClick={() => {
+            this.props.onLoading();
+          }}
+        >
+          load
+        </button>
         <Fade bottom cascade>
           {!this.props.products ? (
             <div>Loading...</div>
@@ -115,5 +124,7 @@ export default connect(
   {
     fetchProducts,
     addToCart,
+    onLoading,
+    isLoaded,
   }
 )(Products);

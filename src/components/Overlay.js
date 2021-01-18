@@ -1,24 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loading, loaded } from "../actions/overLayActions";
+import { onLoading, isLoaded } from "../actions/overLayActions";
 
 class Overlay extends Component {
-  // shows overlay when this.state.loading = active
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: "",
-    };
-  }
-
   toggle = () => {
-    // this.props.loaded();
-    // this.setState({ loading: "" });
+    this.props.isLoaded();
   };
   render() {
+    const { loading } = this.props;
     return (
       <div>
-        <div className={`overlay ${this.state.loading}`} id="loading-overlay">
+        <div className={`overlay ${loading}`} id="loading-overlay">
           <button onClick={this.toggle}>close</button>
         </div>
       </div>
@@ -30,5 +22,5 @@ export default connect(
   (state) => ({
     loading: state.overLay.loading,
   }),
-  { loading, loaded }
+  { onLoading, isLoaded }
 )(Overlay);

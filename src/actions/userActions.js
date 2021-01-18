@@ -25,12 +25,15 @@ export const signin = (user) => async (dispatch) => {
   const res = await fetch(`${apiURL}/api/users/signin`, requestOptions);
   const data = await res.json();
 
-  setUserInfo(data);
-
-  dispatch({
-    type: SIGNIN,
-    payload: data,
-  });
+  if (!data.message) {
+    setUserInfo(data);
+    dispatch({
+      type: SIGNIN,
+      payload: data,
+    });
+  } else {
+    console.log(data.message);
+  }
 };
 
 export const register = (user) => async (dispatch) => {
@@ -57,10 +60,13 @@ export const register = (user) => async (dispatch) => {
   const res = await fetch(`${apiURL}/api/users/`, requestOptions);
   const data = await res.json();
 
-  setUserInfo(data);
-
-  dispatch({
-    type: REGISTER,
-    payload: data,
-  });
+  if (!data.message) {
+    setUserInfo(data);
+    dispatch({
+      type: REGISTER,
+      payload: data,
+    });
+  } else {
+    console.log(data.message);
+  }
 };

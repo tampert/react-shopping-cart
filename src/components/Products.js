@@ -7,7 +7,12 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../actions/productActions";
 import { addToCart } from "../actions/cartActions";
 
-import { onLoading, isLoaded } from "../actions/overLayActions";
+import {
+  onLoading,
+  isLoaded,
+  showMessage,
+  hideMessage,
+} from "../actions/overLayActions";
 
 class Products extends Component {
   constructor(props) {
@@ -38,6 +43,13 @@ class Products extends Component {
           }}
         >
           load
+        </button>
+        <button
+          onClick={() => {
+            this.props.showMessage("jooo");
+          }}
+        >
+          show Joooo
         </button>
         <Fade bottom cascade>
           {!this.props.products ? (
@@ -126,5 +138,7 @@ export default connect(
     addToCart,
     onLoading,
     isLoaded,
+    showMessage,
+    hideMessage,
   }
 )(Products);

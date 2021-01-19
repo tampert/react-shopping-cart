@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { register } from "../actions/userActions";
 import { Redirect } from "react-router-dom";
 import { getUserInfo } from "../localStorage";
+import { showMessage } from "../actions/overLayActions";
 
 class Register extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class Register extends Component {
         password: this.state.password,
       });
     } else {
-      alert("password does not match");
+      this.props.showMessage("password does not match");
       this.setState({
         repassword: "",
       });
@@ -102,5 +103,5 @@ export default connect(
     email: state.user.email,
     password: state.user.password,
   }),
-  { register }
+  { register, showMessage }
 )(Register);

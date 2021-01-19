@@ -7,12 +7,10 @@ class Overlay extends Component {
     this.props.isLoaded();
   };
   render() {
-    const { loading } = this.props;
+    const { active } = this.props;
     return (
-      <div>
-        <div className={`overlay ${loading}`} id="loading-overlay">
-          <button onClick={this.toggle}>close</button>
-        </div>
+      <div className={`overlay ${active}`}>
+        <button onClick={this.toggle}>close</button>
       </div>
     );
   }
@@ -20,7 +18,7 @@ class Overlay extends Component {
 
 export default connect(
   (state) => ({
-    loading: state.overLay.loading,
+    active: state.overLay.loading,
   }),
   { onLoading, isLoaded }
 )(Overlay);

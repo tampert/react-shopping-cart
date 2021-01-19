@@ -2,7 +2,9 @@ import React from "react";
 import store from "./store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./components/Header";
 import Overlay from "./components/Overlay";
+import MessageOverlay from "./components/MessageOverlay";
 import Home from "./pages/Home";
 import SignInPage from "./pages/SignInPage";
 import Register from "./pages/Register";
@@ -14,11 +16,9 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <Overlay />
+        <MessageOverlay />
         <div className="grid-container">
-          <header>
-            <a href="/">React Shopping Cart</a>
-            <a href="/signin">Sign-in</a>
-          </header>
+          <Header />
           <main>
             <Router>
               <Switch>

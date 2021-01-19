@@ -15,3 +15,5 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 // OVERLAY
 export const IS_LOADING = "IS_LOADING";
 export const LOADED = "LOADED";
+export const SHOW_MESSAGE = "SHOW_MESSAGE";
+export const HIDE_MESSAGE = "HIDE_MESSAGE";

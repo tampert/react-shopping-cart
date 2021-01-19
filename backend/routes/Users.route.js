@@ -19,7 +19,13 @@ router
       if (!savedUser) {
         res.status(401).send({ message: "Invalid Name, Email or Password" });
       } else {
-        res.send(savedUser);
+        res.send({
+          _id: savedUser._id,
+          name: savedUser.name,
+          email: savedUser.email,
+          isAdmin: savedUser.isAdmin,
+          token: generateToken(savedUser),
+        });
       }
     })
   );

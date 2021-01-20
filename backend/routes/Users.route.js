@@ -2,7 +2,7 @@ const express = require("express");
 let router = express.Router();
 const expressAsyncHandler = require("express-async-handler");
 const User = require("../models/User.model");
-const generateToken = require("../utils");
+const { generateToken, isAuth } = require("../utils");
 
 router
   .route("/")
@@ -23,6 +23,7 @@ router
           _id: savedUser._id,
           name: savedUser.name,
           email: savedUser.email,
+          password: savedUser.password,
           isAdmin: savedUser.isAdmin,
           token: generateToken(savedUser),
         });
@@ -30,12 +31,36 @@ router
     })
   );
 
-router.route("/:id").delete(
-  expressAsyncHandler(async (req, res) => {
-    const deletedUser = await User.findByIdAndDelete(req.params.id);
-    res.send(deletedUser);
-  })
-);
+router
+  .route("/:id")
+  .delete(
+    expressAsyncHandler(async (req, res) => {
+      const deletedUser = await User.findByIdAndDelete(req.params.id);
+      res.send(deletedUser);
+    })
+  )
+  .put(
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+      const user = await User.findById(req.params.id);
+      if (!user) {
+        res.status(404).send({ message: "User not found" });
+      } else {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.password = req.body.password || user.password;
+        const updateUser = await user.save();
+        res.send({
+          _id: updateUser._id,
+          name: updateUser.name,
+          email: updateUser.email,
+          password: updateUser.password,
+          isAdmin: updateUser.isAdmin,
+          token: generateToken(updateUser),
+        });
+      }
+    })
+  );
 
 router.route("/signin").post(
   expressAsyncHandler(async (req, res) => {
@@ -50,6 +75,7 @@ router.route("/signin").post(
         _id: signinUser._id,
         name: signinUser.name,
         email: signinUser.email,
+        password: signinUser.password,
         isAdmin: signinUser.isAdmin,
         token: generateToken(signinUser),
       });

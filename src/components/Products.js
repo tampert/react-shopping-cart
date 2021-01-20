@@ -37,20 +37,6 @@ class Products extends Component {
     const { product } = this.state;
     return (
       <div>
-        <button
-          onClick={() => {
-            this.props.onLoading();
-          }}
-        >
-          load
-        </button>
-        <button
-          onClick={() => {
-            this.props.showMessage("jooo");
-          }}
-        >
-          show Joooo
-        </button>
         <Fade bottom cascade>
           {!this.props.products ? (
             <div>Loading...</div>

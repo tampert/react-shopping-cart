@@ -302,7 +302,8 @@ button:hover {
 /* Form signin & register */
 
 .signin-form-container,
-.register-form-container {
+.register-form-container,
+.profile-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -310,7 +311,8 @@ button:hover {
 }
 
 .signin-form-items,
-.register-form-items {
+.register-form-items,
+.profile-form-items {
   display: flex;
   flex-direction: column;
   width: 32rem;
@@ -321,13 +323,15 @@ button:hover {
 }
 
 .signin-form-container li,
-.register-form-container li {
+.register-form-container li,
+.profile-form-container li {
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
 
 .signin-form-container h1,
-.register-form-container h1 {
+.register-form-container h1,
+.profile-form-container h1 {
   font-size: 2.5rem;
 }

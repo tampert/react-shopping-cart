@@ -11,7 +11,9 @@ export const CLEAR_CART = "CLEAR_CART";
 // LOGIN
 export const REGISTER = "REGISTER";
 export const SIGNIN = "SIGNIN";
+export const SIGNOUT = "SIGNOUT";
 export const LOGIN_ERROR = "LOGIN_ERROR";
+export const UPDATE = "UPDATE";
 // OVERLAY
 export const IS_LOADING = "IS_LOADING";
 export const LOADED = "LOADED";

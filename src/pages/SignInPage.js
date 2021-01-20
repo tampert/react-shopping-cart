@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { signin } from "../actions/userActions";
 import { Redirect } from "react-router-dom";
 import { getUserInfo } from "../localStorage";
+import { showMessage } from "../actions/overLayActions";
 
 class SignInPage extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class SignInPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     this.props.signin({
       email: this.state.email,
       password: this.state.password,
@@ -73,5 +75,5 @@ export default connect(
     email: state.user.email,
     password: state.user.password,
   }),
-  { signin }
+  { signin, showMessage }
 )(SignInPage);
